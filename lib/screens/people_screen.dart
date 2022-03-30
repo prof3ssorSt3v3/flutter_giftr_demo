@@ -4,11 +4,16 @@ import 'package:intl/intl.dart';
 enum Screen { LOGIN, PEOPLE, GIFTS, ADDGIFT, ADDPERSON }
 
 class PeopleScreen extends StatefulWidget {
-  PeopleScreen({Key? key, required this.goGifts, required this.goEdit})
+  PeopleScreen(
+      {Key? key,
+      required this.logout,
+      required this.goGifts,
+      required this.goEdit})
       : super(key: key);
 
   Function(int, String) goGifts;
   Function(int, String, DateTime) goEdit;
+  Function(Enum) logout;
 
   @override
   State<PeopleScreen> createState() => _PeopleScreenState();
@@ -36,6 +41,15 @@ class _PeopleScreenState extends State<PeopleScreen> {
       appBar: AppBar(
         title: Text('Giftr - People'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              //logout and return to login screen
+              widget.logout(Screen.LOGIN);
+            },
+          )
+        ],
       ),
       body: ListView.builder(
         itemCount: people.length,

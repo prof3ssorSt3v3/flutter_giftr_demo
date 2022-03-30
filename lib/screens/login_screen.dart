@@ -37,23 +37,38 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(height: 16),
                     _buildPassword(),
                     SizedBox(height: 16),
-                    ElevatedButton(
-                      child: Text('Login'),
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          //validation has been passed so we can save the form
-                          _formKey.currentState!.save();
-                          //triggers the onSave in each form field
-                          //call the API function to post the data
-                          //accept the response from the server and
-                          //save the token in SharedPreferences
-                          //go to the people screen
-                          widget.nav();
-                        } else {
-                          //form failed validation so exit
-                          return;
-                        }
-                      },
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(
+                          child: Text('Login'),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              //validation has been passed so we can save the form
+                              _formKey.currentState!.save();
+                              //triggers the onSave in each form field
+                              //call the API function to post the data
+                              //accept the response from the server and
+                              //save the token in SharedPreferences
+                              //go to the people screen
+                              widget.nav();
+                            } else {
+                              //form failed validation so exit
+                              return;
+                            }
+                          },
+                        ),
+                        SizedBox(width: 16.0),
+                        ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            primary: Colors.purple,
+                          ),
+                          child: Text('Sign Up'),
+                          onPressed: () {
+                            //validate then call the API to signup
+                          },
+                        ),
+                      ],
                     ),
                   ]),
             ),

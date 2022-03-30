@@ -6,7 +6,8 @@ enum Screen { LOGIN, PEOPLE, GIFTS, ADDGIFT, ADDPERSON }
 class GiftsScreen extends StatefulWidget {
   GiftsScreen(
       {Key? key,
-      required this.nav,
+      required this.goPeople,
+      required this.logout,
       required this.addGift,
       required this.currentPerson,
       required this.currentPersonName})
@@ -14,7 +15,8 @@ class GiftsScreen extends StatefulWidget {
 
   int currentPerson; //the id of the current person
   String currentPersonName;
-  Function(Enum) nav;
+  Function(Enum) goPeople;
+  Function(Enum) logout;
   Function addGift;
 
   @override
@@ -37,11 +39,20 @@ class _GiftsScreenState extends State<GiftsScreen> {
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             //back to the people page using the function from main.dart
-            widget.nav(Screen.PEOPLE);
+            widget.goPeople(Screen.PEOPLE);
           },
         ),
         title: Text('Ideas - ${widget.currentPersonName}'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              //logout and return to login screen
+              widget.logout(Screen.LOGIN);
+            },
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

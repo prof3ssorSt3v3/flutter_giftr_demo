@@ -64,13 +64,30 @@ class _AddPersonScreenState extends State<AddPersonScreen> {
             SizedBox(height: 16),
             _buildDOB(),
             SizedBox(height: 16),
-            ElevatedButton(
-              child: Text('Save'),
-              onPressed: () {
-                //use the API to save the new person
-                //go to the people screen
-                widget.nav(Screen.PEOPLE);
-              },
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  child: Text('Save'),
+                  onPressed: () {
+                    //use the API to save the new person
+                    //go to the people screen
+                    widget.nav(Screen.PEOPLE);
+                  },
+                ),
+                SizedBox(width: 16.0),
+                if (widget.currentPerson > 0)
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                    ),
+                    child: Text('Delete'),
+                    onPressed: () {
+                      //delete the selected person
+                      //needs confirmation dialog
+                    },
+                  ),
+              ],
             ),
           ]),
         ),
